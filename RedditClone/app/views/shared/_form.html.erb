@@ -1,6 +1,6 @@
-<% method == :edit ? button_value = "Update User" : button_value = "Create User" %>
-
-<form action="<%= users_url %>" method="POST">
+<% action == :edit ? button_value = "Update User" : button_value = "Create User" %>
+<% action == :edit ? action_url = edit_user_url : action_url = users_url %>
+<form action="<%= action_url %>" method="POST">
 
     <% if action == :edit %>
         <input type="hidden" name="_method" value="PATCH">
