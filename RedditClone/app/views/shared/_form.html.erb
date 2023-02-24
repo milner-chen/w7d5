@@ -1,0 +1,18 @@
+<% method == :edit ? button_value = "Update User" : button_value = "Create User" %>
+
+<form action="<%= users_url %>" method="POST">
+
+    <% if action == :edit %>
+        <input type="hidden" name="_method" value="PATCH">
+    <% end %>
+
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <label for="username">Username:</label>
+    <input type="text" name="user[username]" value="<%= user.username %>">
+
+    <label for="password">Password:</label>
+    <input type="password" name="user[password]" value="">
+
+    <input type="submit" value="<%= button_value %>">
+</form>

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
 
     def index
-
+        @users = User.all
         render :index
     end
 
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
 
         if @user.save
-            #log user in
+            login!(@user)
             flash[:messages] = ["Successfully signed up!"]
             redirect_to user_url(@user)
         else
