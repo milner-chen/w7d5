@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+    before_action :ensure_logged_in, only: [:destroy, :edit, :update, :index, :show]
+    before_action :ensure_logged_out, only: [:new, :create]
 
     def index
         @users = User.all
@@ -25,6 +26,7 @@ class UsersController < ApplicationController
     end
 
     def edit
+        @user = User.find(params[:id])
         render :edit
     end
 

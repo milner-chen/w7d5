@@ -22,6 +22,11 @@ class User < ApplicationRecord
 
     before_validation :ensure_session_token
 
+    has_may :subs,
+        foreign_key: :moderator_id,
+        dependent: :destroy,
+        inverse_of: :moderator
+
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)
         if user && user.is_password?(password)
